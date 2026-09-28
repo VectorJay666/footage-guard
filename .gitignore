@@ -1,0 +1,21 @@
+# runtime / build
+out/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.env
+spark.env
+*.log
+
+# local install helpers / scratch (not in submit tree)
+align-extract.b64.txt
+align-extract.txt
+install_narrative.py
+install_r4_freeze.py
+crea-state-append.md
+
+# OS
+.DS_Store
+Thumbs.db

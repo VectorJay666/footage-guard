@@ -1,0 +1,7 @@
+﻿C-R1 models=PASS chat=PASS
+models_body={"object": "list", "data": [{"id": "footage-guard-vlm-stub", "object": "model", "owned_by": "footage-guard-stub", "note": "LOCAL STUB 鈥?not Spark, not vLLM"}]}
+chat_body={"id": "chatcmpl-stub", "object": "chat.completion", "model": "footage-guard-vlm-stub", "choices": [{"index": 0, "message": {"role": "assistant", "content": "{\"people\": 1, \"vehicles\": 0, \"objects\": [\"door\", \"bag\"], \"actions\": [\"walk\", \"open\"], \"summary\": \"STUB: one person near a door with a bag (not real VLM).\"}"}, "finish_reason": "stop"}], "usage": {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}, "stub": true}
+C-R2 models=PASS chat=PASS
+models_body={"object": "list", "data": [{"id": "footage-guard-vlm-stub", "object": "model", "owned_by": "footage-guard-stub", "note": "LOCAL STUB 鈥?not Spark, not vLLM"}]}
+chat_body={"id": "chatcmpl-stub", "object": "chat.completion", "model": "footage-guard-vlm-stub", "choices": [{"index": 0, "message": {"role": "assistant", "content": "{\"people\": 1, \"vehicles\": 0, \"objects\": [\"door\", \"bag\"], \"actions\": [\"walk\", \"open\"], \"summary\": \"STUB: one person near a door with a bag (not real VLM).\"}"}, "finish_reason": "stop"}], "usage": {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}, "stub": true}
+B-skip: PATH 无 ffprobe/ffmpeg
