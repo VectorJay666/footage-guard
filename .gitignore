@@ -7,7 +7,10 @@ __pycache__/
 venv/
 .env
 spark.env
+
+# keep notes evidence logs; ignore other logs
 *.log
+!notes/*.log
 
 # local install helpers / scratch (not in submit tree)
 align-extract.b64.txt

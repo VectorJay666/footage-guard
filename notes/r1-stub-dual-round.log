@@ -1,0 +1,35 @@
+﻿=== ROUND 1 2026-09-28T21:35:10.9752139+08:00 ===
+E-models:
+{"object": "list", "data": [{"id": "footage-guard-vlm-stub", "object": "model", "owned_by": "footage-guard-stub", "note": "LOCAL STUB 鈥?not Spark, not vLLM"}]} HTTP:200
+E-chat:
+{"id": "chatcmpl-stub", "object": "chat.completion", "model": "footage-guard-vlm-stub", "choices": [{"index": 0, "message": {"role": "assistant", "content": "{\"people\": 1, \"vehicles\": 0, \"objects\": [\"door\", \"bag\"], \"actions\": [\"walk\", \"open\"], \"summary\": \"STUB: one person near a door with a bag (not real VLM).\"}"}, "finish_reason": "stop"}], "usage": {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}, "stub": true} HTTP:200
+E-health:
+{"ok": true, "stub": true, "model": "footage-guard-vlm-stub"} HTTP:200
+E-pipeline-no-vlm exit=1
+python : STEP 1/5 probe …
+所在位置 C:\Users\LENOVO\AppData\Local\Temp\ps-script-324e9ff3-ff1c-4613-885b-b75e01d4f24e.ps1:106 字符: 8
++   $p = python scripts\footage_guard.py "assets\sample_footage.mp4" -- ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (STEP 1/5 probe …:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[footage-guard] ERROR: 未找到 ffprobe，请先安装 ffmpeg（Ubuntu: apt install ffmpeg）
+
+
+=== ROUND 2 2026-09-28T21:35:13.0770009+08:00 ===
+E-models:
+{"object": "list", "data": [{"id": "footage-guard-vlm-stub", "object": "model", "owned_by": "footage-guard-stub", "note": "LOCAL STUB 鈥?not Spark, not vLLM"}]} HTTP:200
+E-chat:
+{"id": "chatcmpl-stub", "object": "chat.completion", "model": "footage-guard-vlm-stub", "choices": [{"index": 0, "message": {"role": "assistant", "content": "{\"people\": 1, \"vehicles\": 0, \"objects\": [\"door\", \"bag\"], \"actions\": [\"walk\", \"open\"], \"summary\": \"STUB: one person near a door with a bag (not real VLM).\"}"}, "finish_reason": "stop"}], "usage": {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}, "stub": true} HTTP:200
+E-health:
+{"ok": true, "stub": true, "model": "footage-guard-vlm-stub"} HTTP:200
+E-pipeline-no-vlm exit=1
+python : STEP 1/5 probe …
+所在位置 C:\Users\LENOVO\AppData\Local\Temp\ps-script-324e9ff3-ff1c-4613-885b-b75e01d4f24e.ps1:106 字符: 8
++   $p = python scripts\footage_guard.py "assets\sample_footage.mp4" -- ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (STEP 1/5 probe …:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[footage-guard] ERROR: 未找到 ffprobe，请先安装 ffmpeg（Ubuntu: apt install ffmpeg）
+

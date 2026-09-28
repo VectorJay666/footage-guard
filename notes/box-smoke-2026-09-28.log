@@ -1,0 +1,32 @@
+=== TRACK B --no-vlm ===
+STEP 1/5 probe …
+  30.0s 1280x720 @ 15.0fps h264
+STEP 2/5 extract_frames …
+[extract] OK: 6 帧, 间隔 5s, 范围 0.0s–30.0s
+[extract] 拼图 -> /workspace/footage-guard/out/judge-novlm/montage.jpg
+STEP 3/5 VLM: 跳过（--no-vlm 结构模式）
+STEP 4/5 build_timeline …
+[timeline] 结构模式：无 VLM 数据，生成覆盖性占位事件。
+STEP 5/5 report …
+  报告 -> /workspace/footage-guard/out/judge-novlm/report.md
+MEDIA:/workspace/footage-guard/out/judge-novlm/montage.jpg
+EXIT=0
+=== artifacts ===
+total 192
+drwxr-xr-x 3 box box   4096 Sep 28 21:38 .
+drwxr-xr-x 3 box box   4096 Sep 28 21:38 ..
+-rw-r--r-- 1 box box    384 Sep 28 21:38 event_timeline.md
+-rw-r--r-- 1 box box    343 Sep 28 21:38 events.json
+drwxr-xr-x 2 box box   4096 Sep 28 21:38 frames
+-rw-r--r-- 1 box box    490 Sep 28 21:38 frames.json
+-rw-r--r-- 1 box box    224 Sep 28 21:38 meta.json
+-rw-r--r-- 1 box box 161498 Sep 28 21:38 montage.jpg
+-rw-r--r-- 1 box box   1414 Sep 28 21:38 report.md
+=== MEDIA line check ===
+MEDIA:/workspace/footage-guard/out/judge-novlm/montage.jpg
+
+=== TRACK C stub endpoints (port 8765, 2026-09-28 box) ===
+GET /v1/models -> footage-guard-vlm-stub HTTP ok
+POST /v1/chat/completions -> stub:true HTTP ok
+GET /health -> ok stub:true
+NOTE: stub ≠ M5; not Spark/5090; box has ffmpeg so track B PASS here while laptop B remains BLOCKED (no ffmpeg PATH).
