@@ -1,0 +1,39 @@
+# FootageGuard demo run log v4 (box, recorded 2026-09-29T15:31:38 Asia/Shanghai)
+# Recorded with asciinema 2 (raw cast: out-v4/run.cast, 120x22); ANSI colors stripped, git \r progress collapsed to its final state,
+# pty line-wrap artifacts inside color escapes rejoined: 0. No other edits.
+# Session script: <demo-root>/session-v4.sh (each command echoed with '$ ' then executed; no [exit=] lines => all exit 0)
+# Real elapsed: 12.8s
+$ git clone https://github.com/VectorJay666/footage-guard
+Cloning into 'footage-guard'...
+remote: Enumerating objects: 86, done.
+remote: Counting objects: 100% (86/86), done.
+remote: Compressing objects: 100% (60/60), done.
+remote: Total 86 (delta 26), reused 85 (delta 25), pack-reused 0 (from 0)
+Receiving objects: 100% (86/86), 2.42 MiB | 16.29 MiB/s, done.
+Resolving deltas: 100% (26/26), done.
+$ git --no-pager -C footage-guard log -1 --oneline
+72d7018 (HEAD -> main, origin/main, origin/HEAD) docs: align hardware wording — no DGX Spark or comparable-compute device available; real-hardware testing not done
+$ cd footage-guard
+$ source ../../venv/bin/activate
+$ bash scripts/install.sh --offline
+== footage-guard install check ==
+[ok] python3 Python 3.13.5
+[ok] ffmpeg
+[ok] ffprobe
+[ok] Pillow（可选）：关键帧拼图带时间戳标注
+== install check done ==
+$ ls -lh ../../input/
+total 70M
+-rw-r--r-- 1 box box 70M Sep 29 14:46 DiagonalCrosswalkYongeDundas.webm
+$ scripts/run.sh ../../input/DiagonalCrosswalkYongeDundas.webm --interval 5 --no-vlm --out <demo-root>/v4/run-out
+STEP 1/5 probe …
+  56.6s 1920x1080 @ 23.976fps vp8
+STEP 2/5 extract_frames …
+[extract] OK: 11 帧, 间隔 5s, 范围 0.0s–56.6s
+[extract] 拼图 -> <demo-root>/v4/run-out/montage.jpg
+STEP 3/5 VLM: 跳过（--no-vlm 结构模式）
+STEP 4/5 build_timeline …
+[timeline] 结构模式：无 VLM 数据，生成覆盖性占位事件。
+STEP 5/5 report …
+  报告 -> <demo-root>/v4/run-out/report.md
+MEDIA:<demo-root>/v4/run-out/montage.jpg
