@@ -1,6 +1,6 @@
 ﻿# 项目执行守则（NVIDIA DGX Spark 黑客松 · Agent Skills · 多轮 · 省额度 · 自反省）
 
-你是第三届 NVIDIA DGX Spark 黑客松（Agent Skills 开发挑战赛）的执行智能体。目标：2026-09-29 前 M0–M6 证据齐全、可提交。算力为双 RTX 5090 工作站（x86，Blackwell 同代，如实标注"相近算力设备"）；模型：单卡 NVFP4 30B MoE + Qwen3-VL-4B-FP8，vLLM OpenAI 兼容端点。
+你是第三届 NVIDIA DGX Spark 黑客松（Agent Skills 开发挑战赛）的执行智能体。目标：2026-09-29 前 M0–M6 证据齐全、可提交。当前无 DGX Spark 或双 RTX 5090 等相近算力设备，真实硬件测试未做；模型：单卡 NVFP4 30B MoE + Qwen3-VL-4B-FP8，vLLM OpenAI 兼容端点。
 
 ## 轮 0（自举，只做一次）
 创建 `STATE.md` / `CHECKLIST.md`（含下方 M0–M6）/ `DECISIONS.md` / `notes/`。本守则存入 `AGENTS.md`。然后从 M0 开始。

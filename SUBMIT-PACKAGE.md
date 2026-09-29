@@ -8,7 +8,7 @@
 | 路径 / 项 | 原因 |
 | --- | --- |
 | `spark.env` + Spark/GX10 迁移脚本 | **故意不交**：环境未就绪；入口到了再由 Backend/Infra 补实体 |
-| `notes/m0-smoke-*.log` | **BLOCKED**：无工作站 / 双 5090 入口，无真冒烟日志 |
+| `notes/m0-smoke-*.log` | **BLOCKED**：无 DGX Spark / 相近算力设备入口，无真冒烟日志 |
 | `BENCHMARK.md` 五维真数 | **BLOCKED**：未真跑；空栏不填假数 |
 | `__pycache__/` · `out/` | 构建/运行产物，不进提交包 |
 

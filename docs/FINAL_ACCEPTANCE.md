@@ -12,7 +12,7 @@
 | **B** | `--no-vlm` → MEDIA | **BLOCKED** | PATH 无 ffmpeg/ffprobe（laptop） |
 | **C 端点** | stub `/v1/models` + chat | **PASS**（双轮，已标 stub） | `notes/r1-stub-dual-round.log` · `notes/r3-round-log.txt` |
 | **C 全链路 MEDIA** | stub + 管线 | **BLOCKED** | 同 B，无 ffmpeg |
-| **M0 / 真 VLM / BENCHMARK 五维** | 5090 真跑 | **BLOCKED** | 无工作站入口；空栏不填假数 |
+| **M0 / 真 VLM / BENCHMARK 五维** | 真实硬件真跑 | **BLOCKED** | 无 DGX Spark 或相近算力设备入口；空栏不填假数 |
 
 ## box 副本冒烟附注（2026-09-28 · Asia/Shanghai）
 
@@ -22,7 +22,7 @@ box 环境有 ffmpeg，额外可跑项（**不覆盖**用户机 Verdict；**不�
 | --- | --- | --- |
 | B `--no-vlm` → MEDIA | **PASS** | `out/judge-novlm/` + `notes/box-smoke-2026-09-28.log`；末行 `MEDIA:.../montage.jpg` |
 | C stub 端点 | **PASS** | 同日志；`footage-guard-vlm-stub` / `stub:true` |
-| M0 / Spark / 5090 五维 | **仍 BLOCKED** | 未连机；无假分 |
+| M0 / Spark / 真实硬件五维 | **仍 BLOCKED** | 未连机；无假分 |
 
 ## 禁止
 

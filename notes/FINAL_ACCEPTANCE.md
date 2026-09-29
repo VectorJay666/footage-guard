@@ -1,7 +1,7 @@
 ﻿# FINAL_ACCEPTANCE · footage-guard（R3 · Test · 2026-09-28 21:35 CST）
 
 依据：`notes/r1-inventory.md`、`notes/r2-judge-10min.md`  
-硬件：双 RTX 5090（x86，相近算力）— **未连机**  
+硬件：当前无 DGX Spark 或相近算力设备；真实硬件测试未做  
 标记：PASS / FAIL / SILENT_FAIL / BLOCKED / （空=未跑）  
 复测：可跑项至少两轮；FAIL → 打回 Backend → 再测；BLOCKED 写原因，禁止造假
 
@@ -50,9 +50,9 @@
 
 | ID | 结果 | 原因 |
 | --- | --- | --- |
-| M0 vLLM 冒烟 | BLOCKED | 无工作站入口；零伪造日志 |
-| 真 VLM 5090 管线 | BLOCKED | 同上 |
-| BENCHMARK 五维填数 | BLOCKED | 须 5090 真跑；stub/`--no-vlm` 不算分 |
+| M0 vLLM 冒烟 | BLOCKED | 无 DGX Spark 或相近算力设备入口；零伪造日志 |
+| 真 VLM 真实硬件管线 | BLOCKED | 同上 |
+| BENCHMARK 五维填数 | BLOCKED | 须真实硬件真跑；stub/`--no-vlm` 不算分 |
 
 ---
 
@@ -66,6 +66,6 @@
 | C 全链路 MEDIA | **BLOCKED** |
 | M0/M5 | **BLOCKED** |
 
-本轮 **无 FAIL** → 不打回 Backend 修代码。OPEN 打回：**Ops**=ffmpeg；**用户/Infra**=5090 入口。
+本轮 **无 FAIL** → 不打回 Backend 修代码。OPEN 打回：**Ops**=ffmpeg；**用户/Infra**=相近算力设备入口。
 
-下一轮：ffmpeg 回 PATH 后立即跑轨 B 双轮；入口到后跑 M0 再填 5090 栏。
+下一轮：ffmpeg 回 PATH 后立即跑轨 B 双轮；设备到后跑 M0 再填真跑栏。

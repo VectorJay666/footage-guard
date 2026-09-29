@@ -1,6 +1,6 @@
 # CHECKLIST · M0–M6（footage-guard）
 
-硬件口径：**双 RTX 5090（x86，相近算力）** — 不冒充 GB10/Spark。  
+硬件口径：**当前无 DGX Spark 或相近算力设备，真实硬件测试未做** — 不冒充 GB10/Spark。  
 stub 栏与真跑栏分列；未跑不填数。
 
 ## M0 环境（Backend 认领）

@@ -3,14 +3,14 @@
 ## 30 秒电梯稿（背这版）
 「监控复盘别再全程拖进度条，也别为了两分钟片段把画面送上云。  
 footage-guard 是本地 Skill：视频进，事件时间线、关键帧拼图、复盘报告出；默认数据不出网。  
-今天没有工作站入口，我们不装已上卡——交的是可跑 Skill、离线 Demo，和一张诚实的 BLOCKED 评测表。  
+今天没有 DGX Spark 或相近算力设备入口，我们不装已上卡——交的是可跑 Skill、离线 Demo，和一张诚实的 BLOCKED 评测表。  
 有 5090 或 Spark，只换 OpenAI 兼容端点，Skill 不用重写。」
 
 ## 评委 Demo 步骤（约 3–4 分钟）
 
 ### 0. 开场定调（15s）
 - 一句话：隐私本地复盘 Skill。  
-- 主动声明：BENCHMARK 第二部分 **BLOCKED（无工作站入口）**；数字不造假。
+- 主动声明：BENCHMARK 第二部分 **BLOCKED（无 DGX Spark 或相近算力设备）**；数字不造假。
 
 ### 1. 离线产物（90s）— 主路径
 1. 打开仓库已有产物目录（样片跑出的 `*.footage-guard/` 或 Frontend Demo 页）。  

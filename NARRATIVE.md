@@ -1,7 +1,7 @@
 # footage-guard 叙事终稿（Crea&Cons · rev4 · 缩范围可交）
 
 > **9/29 可交口径（砍完美保主干）**  
-> 交什么：① M3 自研 Skill 目录（SKILL / scripts / evals / skill-card）② 离线 Demo（已有 report / events / timeline / montage）③ 诚实 BLOCKED（M0/M5 无工作站入口 = 不填假数）。  
+> 交什么：① M3 自研 Skill 目录（SKILL / scripts / evals / skill-card）② 离线 Demo（已有 report / events / timeline / montage）③ 诚实 BLOCKED（M0/M5 无 DGX Spark 或相近算力设备 = 不填假数）。  
 > **不交什么**：冒充 GB10/Spark/5090 已跑的 BENCHMARK 数字；假 curl；「已上卡」话术。  
 > 硬件红线：真跑若发生，标注 **双 RTX 5090（x86，相近算力设备）**；Spark/GX10 仅迁移目标。
 
@@ -32,7 +32,7 @@
 ## 风险（路演主动说）
 | 风险 | 怎么说 |
 | --- | --- |
-| 无 5090 入口 | M0/M5 BLOCKED；今日交 M3+离线证据 |
+| 无相近算力设备入口 | M0/M5 BLOCKED；今日交 M3+离线证据 |
 | 本机缺 ffmpeg | 全链路复跑 BLOCKED；Demo 用已生成产物 |
 | stub 被误读 | 话术强制：「stub 不算分」 |
 

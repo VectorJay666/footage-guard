@@ -12,11 +12,11 @@
 
 1. `TEST-REPORT.md` — 开发机管线 9/9 PASS（含 `--no-vlm`）
 2. `evals/evals.json` — 4 pos + 3 neg
-3. `skill-card.md` / `NARRATIVE.md` — 双 5090 相近算力 + spark.env 迁移口径
+3. `skill-card.md` / `NARRATIVE.md` — 相近算力设备（当前未测）+ spark.env 迁移口径
 4. `notes/accept-matrix-5090-vs-stub.md` — 分栏；stub 不算 M5
 5. 已有产物：`out/judge-novlm/montage.jpg` + `report.md`（或开发机 `*.footage-guard/`）
 
-口播：「证据在 TEST-REPORT；真 VLM/Agent 分在 5090 轨，今日 BLOCKED。」
+口播：「证据在 TEST-REPORT；真 VLM/Agent 分在真实硬件轨，今日 BLOCKED。」
 
 ### 轨 B（有 ffmpeg · ~2 min）
 
@@ -44,7 +44,7 @@ curl -s http://127.0.0.1:8000/v1/models
 
 ### 轨 D（入口到期后 · 今日跳过）
 
-见 `notes/m0-vllm-smoke.md`；数字进 `BENCHMARK.md` 5090 栏。
+见 `notes/m0-vllm-smoke.md`；数字进 `BENCHMARK.md` 真跑栏。
 
 ## box 已验证命令（2026-09-28）
 

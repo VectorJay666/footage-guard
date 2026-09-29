@@ -19,17 +19,17 @@
 | 端点不通全链路 | PASS | 每帧重试 3 次记失败，管线降级为结构模式，exit=0，7 个产物齐全 |
 ## 第二部分：Agent + VLM 五维实测
 
-### 状态：**BLOCKED（无工作站入口 / 无 5090 真跑）**
+### 状态：**BLOCKED（无 DGX Spark 或相近算力设备 / 无真实硬件测试）**
 
-无双 5090 工作站入口、无本地 GPU vLLM 真跑时：**禁止**用假 curl、假端点日志假装已测。真五维数字与 Verdict 的 Agent+VLM 部分一律待填；硬件日后须标注「相近算力设备」，不冒充 GB10/Spark。
+无 DGX Spark 或相近算力设备、无本地 GPU vLLM 真跑时：**禁止**用假 curl、假端点日志假装已测。真五维数字与 Verdict 的 Agent+VLM 部分一律待填；硬件日后须如实标注，不冒充 GB10/Spark。
 
 | 项 | 值 |
 | --- | --- |
 | Agent | <待填：有算力后再填> |
 | 多模态模型 | <待填：如 Qwen3-VL-4B-Instruct-FP8 @ 本地 vLLM> |
-| 硬件 | **当前无工作站入口**；开发机仅 stub / `--no-vlm`；目标标注双 RTX 5090（x86，相近算力） |
+| 硬件 | **当前无 DGX Spark 或相近算力设备，真实硬件测试未做**；开发机仅 stub / `--no-vlm` |
 | 日期 | <YYYY-MM-DD> |
-| 本段结论 | **BLOCKED（无工作站入口）** — 命令已备，结果待填 |
+| 本段结论 | **BLOCKED（无 DGX Spark 或相近算力设备）** — 命令已备，结果待填 |
 
 ### 五维结果（baseline → with skill）— 待算力回填
 

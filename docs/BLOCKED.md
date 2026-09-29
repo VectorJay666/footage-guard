@@ -7,10 +7,10 @@
 
 | ID | 阻塞 | Owner | 说明 |
 | --- | --- | --- | --- |
-| M0 | 无工作站入口 | 用户 / Infra | 无 SSH/真机；零伪造冒烟日志 |
+| M0 | 无 DGX Spark 或相近算力设备入口 | 用户 / Infra | 无真机；零伪造冒烟日志 |
 | M1 | 官方 skill 链未装 | Backend | `npx skills add nvidia/skills` 等未做 |
 | M2 | 适配层未落地 | Backend / Infra | `env.sh` / `run-official-skill.sh` / `spark.env` 待落 |
-| M5 五维 | 须 5090 真跑 | Test | stub / `--no-vlm` **不算分**；BENCHMARK 第二部分空栏 |
+| M5 五维 | 须真实硬件真跑 | Test | stub / `--no-vlm` **不算分**；BENCHMARK 第二部分空栏 |
 | 真 VLM | 无本地 vLLM 端点 | Backend | 默认 127.0.0.1:8000 未起真模型 |
 | 用户机 ffmpeg | PATH 无 ffprobe | Ops | 用户机轨 B/C 全链路 BLOCKED |
 
@@ -26,4 +26,4 @@
 
 ## 评委一句话
 
-「今日交的是可跑 Skill + 离线 Demo + 诚实 BLOCKED 表；有 5090/Spark 只换 OpenAI 兼容端点，不重写 Skill。」
+「今日交的是可跑 Skill + 离线 Demo + 诚实 BLOCKED 表；有相近算力设备或 Spark 只换 OpenAI 兼容端点，不重写 Skill。」

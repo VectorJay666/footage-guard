@@ -1,6 +1,6 @@
 # 测试报告
 
-> 评委 10 分钟复现命令（含期望产物）：[`notes/r2-judge-10min.md`](notes/r2-judge-10min.md)。本报告是轨 A/B 的管线证据；M5 真数见 5090 栏，禁止 stub 冒充。
+> 评委 10 分钟复现命令（含期望产物）：[`notes/r2-judge-10min.md`](notes/r2-judge-10min.md)。本报告是轨 A/B 的管线证据；M5 真数待真实硬件测试，禁止 stub 冒充。
 
 项目：footage-guard（本地视频事件复盘 Skill）
 日期：2026-09-23

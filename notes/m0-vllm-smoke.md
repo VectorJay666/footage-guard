@@ -1,6 +1,6 @@
-﻿# M0 · vLLM 冒烟（双 RTX 5090 · 命令已备 / 结果待真机）
+﻿# M0 · vLLM 冒烟（真实硬件 · 命令已备 / 当前未测）
 
-> 硬件：双 RTX 5090（x86），标注「相近算力设备」。  
+> 硬件：当前无 DGX Spark 或相近算力设备，真实硬件测试未做。  
 > **禁止**在无 GPU 机上伪造本文件对应的 `.log`。  
 > 执行后把 stdout/stderr 落到 `notes/m0-smoke-moe.log` / `notes/m0-smoke-vl.log` / `notes/m0-smoke-openai.json`。
 
@@ -12,7 +12,7 @@ nvidia-smi -L
 
 ## 1) 单卡 NVFP4 30B MoE（示例端口 8001）
 ```bash
-# 模型路径/镜像以工作站实际为准；下列为契约形状
+# 模型路径/镜像以实测设备实际为准；下列为契约形状
 CUDA_VISIBLE_DEVICES=0 vllm serve <NVFP4_30B_MoE_MODEL> \
   --port 8001 --max-model-len 8192
 curl -s http://127.0.0.1:8001/v1/models | tee notes/m0-smoke-moe-models.json

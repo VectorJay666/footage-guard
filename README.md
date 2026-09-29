@@ -2,7 +2,7 @@
 
 把一段本地监控/现场录像，变成「事件时间线 + 带时间戳的关键帧拼图 + 复盘报告」。
 
-一句话定位：隐私本地复盘 Skill——双 RTX 5090（x86，相近算力）上拿真跑证据；DGX Spark / GX10 用 spark.env 一键迁移，不冒充已在 GB10 跑过。stub 只做开发回退，不算 M5。
+一句话定位：隐私本地复盘 Skill——当前无 DGX Spark 或相近算力设备，真实硬件测试未做。stub 只做开发回退，不算 M5。
 
 ## 评委 10 分钟
 
@@ -11,12 +11,12 @@
 - 盘点：[`notes/r1-inventory.md`](notes/r1-inventory.md)
 - Windows 入口：`scripts/run.ps1`（参数同 `footage_guard.py` / `run.sh`）
 
-默认演示走 **轨 A**（只读证据）；有 ffmpeg 再跑轨 B/C；5090 真数走轨 D（`notes/m0-vllm-smoke.md`）。**stub / --no-vlm 不算 M5。**
+默认演示走 **轨 A**（只读证据）；有 ffmpeg 再跑轨 B/C；真实硬件测试待后续相近算力设备到位（`notes/m0-vllm-smoke.md`）。**stub / --no-vlm 不算 M5。**
 
 ## 提交现实（9/29 缩范围）
 
 **可交证据**：M3 Skill 目录 + 开发机 `TEST-REPORT`（含 `--no-vlm`）+ 离线 report/montage Demo + `BENCHMARK` 第一部分 PASS。  
-**诚实 BLOCKED**：无工作站入口前，不做 M0 冒烟日志、不填 M5 五维真数；硬件若日后真跑，标注双 RTX 5090（x86，相近算力），不冒充 DGX Spark/GB10。  
+**诚实 BLOCKED**：当前无 DGX Spark 或相近算力设备，真实硬件测试未做；不做 M0 冒烟日志、不填 M5 五维真数。  
 **开发优先命令**（无需 GPU）：
 
 ```bash
@@ -29,7 +29,7 @@ scripts/run.sh assets/sample_footage.mp4 --interval 5 --no-vlm
 
 安防、园区、门店、活动现场，录像的复盘方式是"打开播放器慢慢拖进度条"。一段 30 分钟的监控里真正有用的可能就两分钟，但人是得全程看的。丢给云端视频分析又踩隐私红线；官方 VSS（Video Search and Summarization）能做，但那是一套 Docker + Kafka + Elasticsearch 的重型部署，在单卡边缘机上不现实。
 
-我们要的是中间那档：**单机本地（开发机 / 双 5090 相近算力 / 将来 Spark），视频进 → 报告出，中间几步是分钟级的**——没卡也能 `--no-vlm` 交管线证据。
+我们要的是中间那档：**单机本地（开发机；DGX Spark / 相近算力设备仅为后续目标），视频进 → 报告出，中间几步是分钟级的**——没卡也能 `--no-vlm` 交管线证据。
 
 ## 怎么工作
 
@@ -97,7 +97,7 @@ scripts/run.sh /path/to/cctv.mp4 --no-vlm
 
 2026-09-23 在开发机（Windows + Python 3.13.5 + ffmpeg 7.1）完成自测：管线 9 个用例 + 合成数据 4 个用例，全部通过，含"端点不通降级""范围过短""帧数上限"等边界。过程里抓出来一个 guard 条件 bug（1 秒范围 + 5 秒间隔会抽 0 帧，导致 ffmpeg 报看不懂的编码错）并已修复。详见 `TEST-REPORT.md`。
 
-还没测的两块：VLM 真实推理质量、Agent 触发行为（evals 7 条）。**当前无工作站入口 → BENCHMARK 第二部分 BLOCKED**；命令在 `notes/m0-vllm-smoke.md` / `BENCHMARK.md`，有入口再填真数。
+还没测的两块：VLM 真实推理质量、Agent 触发行为（evals 7 条）。**当前无 DGX Spark 或相近算力设备，真实硬件测试未做 → BENCHMARK 第二部分 BLOCKED**；命令在 `notes/m0-vllm-smoke.md` / `BENCHMARK.md`，有设备再填真数。
 
 ## 技术细节
 
@@ -161,7 +161,7 @@ scripts/run.sh /path/to/cctv.mp4 --no-vlm
 | 提交用笔记本上跑离线流程（轨 B） | BLOCKED | 该机 PATH 里没有 ffmpeg |
 | stub 接完整流程出 MEDIA | BLOCKED | 同上 |
 | 负向用例 neg1–neg3 实际拒绝 | 未跑 | 需要 Agent 链路 |
-| M0 vLLM 冒烟 / 真模型管线 | BLOCKED | 没有工作站（双 RTX 5090）入口 |
+| M0 vLLM 冒烟 / 真模型管线 | BLOCKED | 当前无 DGX Spark 或相近算力设备入口 |
 | BENCHMARK 五项数字 | BLOCKED | 须真机实跑；stub 和 `--no-vlm` 不算分 |
 
 ### 已知小问题（如实记录，本次不改代码）

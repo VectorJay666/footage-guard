@@ -7,7 +7,7 @@ R3 互链 + run.ps1 核对完成；R4 目录清单已出。M0/BENCHMARK 真数�
 R3/R4：README↔r2↔TEST-REPORT 互链；run.ps1 转发校验；`notes/r4-submit-tree.md`
 
 ## 未决问题
-1. 5090 入口 2. ffmpeg PATH 3. Test 打回项（待命当场修）
+1. 相近算力设备入口 2. ffmpeg PATH 3. Test 打回项（待命当场修）
 
 ## 上轮反省三问
 ① 差距：无真 M0 日志。 ② 归因：环境。 ③ 下一动作：等 Test 打回或入口。

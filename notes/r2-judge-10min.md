@@ -6,7 +6,7 @@
 ```text
 D:\DGX Spark黑客松比赛\footage-guard
 ```
-硬件口径：双 RTX 5090（x86，相近算力）真跑拿分；**stub / --no-vlm 不算 M5**。
+硬件口径：相近算力设备真跑拿分；当前未实测。**stub / --no-vlm 不算 M5**。
 
 ---
 
@@ -16,10 +16,10 @@ D:\DGX Spark黑客松比赛\footage-guard
 
 1. `TEST-REPORT.md` — 管线 9/9 PASS（开发机 `--no-vlm`）
 2. `evals/evals.json` — 4 正 + 3 负
-3. `skill-card.md` / `NARRATIVE.md` — 双 5090 + spark.env 迁移口径
+3. `skill-card.md` / `NARRATIVE.md` — 相近算力设备（当前未测）+ spark.env 迁移口径
 4. `notes/accept-matrix-5090-vs-stub.md` — stub 与 5090 分栏
 
-期望产物：无新文件。口播：「管线证据在 TEST-REPORT；真 VLM/Agent 分在 5090 轨。」
+期望产物：无新文件。口播：「管线证据在 TEST-REPORT；真 VLM/Agent 分在真实硬件轨。」
 
 ---
 
@@ -57,7 +57,7 @@ curl.exe -s http://127.0.0.1:8000/v1/models
 python scripts\footage_guard.py assets\sample_footage.mp4 --interval 5 --out "$PWD\out\judge-stub"
 ```
 
-期望产物：同轨 B，且 `describe_report.json` 中模型名为 stub 系；**结果栏必须标 stub（非 5090）**。
+期望产物：同轨 B，且 `describe_report.json` 中模型名为 stub 系；**结果栏必须标 stub（非真实硬件）**。
 
 冒烟-only（不跑管线）：
 ```powershell
@@ -68,7 +68,7 @@ curl.exe -s http://127.0.0.1:8000/v1/chat/completions -H "Content-Type: applicat
 
 ---
 
-## 轨 D — 双 5090 真 VLM（M0/M5，入口到期后）
+## 轨 D — 真实硬件 VLM（M0/M5，设备到位后）
 
 命令与日志路径：`notes/m0-vllm-smoke.md`  
 管线接真端点：
@@ -76,7 +76,7 @@ curl.exe -s http://127.0.0.1:8000/v1/chat/completions -H "Content-Type: applicat
 export FOOTAGE_GUARD_BASE_URL=http://127.0.0.1:8000/v1
 python3 scripts/footage_guard.py assets/sample_footage.mp4 --interval 5 --out out/judge-5090
 ```
-期望：`MEDIA:` 末行 + `describe_report.json` 非 stub；数字进 `BENCHMARK.md` 5090 栏。
+期望：`MEDIA:` 末行 + `describe_report.json` 非 stub；数字进 `BENCHMARK.md` 真跑栏。
 
 ---
 
