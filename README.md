@@ -99,6 +99,75 @@ scripts/run.sh /path/to/cctv.mp4 --no-vlm
 
 还没测的两块：VLM 真实推理质量、Agent 触发行为（evals 7 条）。**当前无工作站入口 → BENCHMARK 第二部分 BLOCKED**；命令在 `notes/m0-vllm-smoke.md` / `BENCHMARK.md`，有入口再填真数。
 
+## 技术细节
+
+### 处理流程（五步，全程本机）
+
+| 步 | 脚本 | 做什么 | 产物 |
+| --- | --- | --- | --- |
+| 1 探测 | `scripts/probe.py` | 用 ffprobe 读时长、分辨率、帧率、编码 | `meta.json` |
+| 2 抽帧 | `scripts/extract_frames.py` | 用 ffmpeg 按固定间隔（默认 5 秒）截帧，拼成带时间戳的拼图 | `frames/`、`frames.json`、`montage.jpg` |
+| 3 看图 | `scripts/vlm_describe.py` | 把每帧发给本地多模态模型（OpenAI 兼容接口），拿回人数、车辆、物体、动作 | `frames/frame_XXXX.json`（逐帧缓存） |
+| 4 聚合 | `scripts/build_timeline.py` | 把"人数档位 + 车辆档位"不变的连续帧合成一个事件，命中关注词的打标 | `events.json`、`event_timeline.md` |
+| 5 报告 | `scripts/footage_guard.py` | 汇总成复盘报告，stdout 最后一行打印 `MEDIA:<拼图绝对路径>` | `report.md` |
+
+一键入口：`scripts/run.sh <视频> --out <目录>`（Windows 用 `scripts/run.ps1`）。（依据：`references/workflow.md`）
+
+### 依赖
+
+- 必需：Python 3 和 ffmpeg/ffprobe 两个可执行文件。所有脚本只 import 标准库，不需要 pip 安装任何包。（依据：`scripts/*.py` 的 import 行、`scripts/install.sh`）
+- 可选：Pillow。装了之后拼图上每张缩略图会带时间戳标注；没装会退化成 ffmpeg 拼的无标注网格。安装命令 `pip install "Pillow>=9.0"`。（依据：`scripts/install.sh`）
+- 可选依赖文件：`scripts/requirements.txt`，只列了 Pillow（`Pillow>=9.0`），`pip install -r scripts/requirements.txt` 即可；不装也能跑。
+- 环境自检：`scripts/install.sh --offline`。
+
+### 两种运行模式
+
+| | 离线结构模式 `--no-vlm` | 接模型模式 |
+| --- | --- | --- |
+| 需要什么 | Python 3（只用标准库）+ ffmpeg/ffprobe；Pillow 可选 | 另加一个本地 OpenAI 兼容多模态端点（默认 `http://127.0.0.1:8000/v1`） |
+| 跑第 3 步吗 | 跳过 | 跑 |
+| 拼图 | 有 | 有 |
+| 事件内容 | 只有 1 条覆盖性占位事件，人和车写"未知" | 按画面内容切分事件，写出人数/车辆档位和关注标记 |
+| 本次实测 | 样例 30 秒视频 → 6 帧（每 5 秒一帧）+ 1 条事件（0–25 秒）、`EXIT=0`（`notes/box-smoke-2026-09-28.log`，在装了 ffmpeg 的另一台 Linux 开发机上跑） | **未实测**，见下方 BLOCKED |
+
+端点连不上时，一键脚本会自动降级到结构模式，不中断。（依据：`references/workflow.md`"一键还是分步"）
+
+### Skill 输入输出约定
+
+- **输入**：已落地的本地视频路径（必填，不存在就停下问，不猜）、起止秒、取帧间隔、关注对象（可选）。（`SKILL.md`）
+- **输出**：全部写进 `--out` 目录，清单见 `references/output-contract.md`。
+- **MEDIA 通道**：stdout 最后一个非空行是裸文本 `MEDIA:/abs/path/montage.jpg`，没有拼图时指向 `report.md`；Agent 最终回复最后一行必须原样带上。（`references/output-contract.md`）
+- **`events.json` 字段**：`idx`、`start_ts`/`end_ts`（秒）、`state.people`/`state.vehicles`（档位字符串，不是精确计数）、`attention`、`attention_reasons`、`n_frames`、`sample_frame`；结构模式下多一个 `note`。
+- **消费端兜底**：模型可能漏字段或给 `null`，解析失败时只剩 `summary` 和 `"parse_failed": true`。
+
+### 安全边界（写在 Skill 里的设计约束）
+
+- 默认只连 `127.0.0.1`；换成非本机端点会打 WARN，必须先告知用户画面将发往远端。
+- 只读原视频，不改、不转码、不删；产物只写 `--out`。
+- API key 只走环境变量 `FOOTAGE_GUARD_API_KEY`，不打印明文。
+- 设计上拒绝四类请求：实时告警、身份/人脸识别、转码剪辑、单图问答。**这一条目前只写在 `SKILL.md` 里，负向用例 neg1–neg3 需要走 Agent 链路，本次没有跑过。**
+- 帧数上限 `--max-frames`（默认 240），超了自动放大间隔；同参数复跑命中逐帧缓存，不重复调模型。
+
+### 本地模拟端点（stub，不算模型结果）
+
+`scripts/vlm_stub_server.py` 起一个 OpenAI 兼容的假服务（模型 id `footage-guard-vlm-stub`），`/v1/models` 和 `/v1/chat/completions` 双轮 PASS（`notes/r3-round-log.txt`）。它只回固定文案、带 `stub:true`，只证明接口调用链路通，不代表识别效果，不计入跑分。
+
+### 当前状态（BLOCKED 清单，照 `notes/FINAL_ACCEPTANCE.md`）
+
+| 项 | 状态 | 原因 |
+| --- | --- | --- |
+| 文档/Skill/evals 齐全（轨 A） | PASS 10/10 | 双轮核对 |
+| stub 端点（轨 C） | PASS | 双轮，已标 stub |
+| 提交用笔记本上跑离线流程（轨 B） | BLOCKED | 该机 PATH 里没有 ffmpeg |
+| stub 接完整流程出 MEDIA | BLOCKED | 同上 |
+| 负向用例 neg1–neg3 实际拒绝 | 未跑 | 需要 Agent 链路 |
+| M0 vLLM 冒烟 / 真模型管线 | BLOCKED | 没有工作站（双 RTX 5090）入口 |
+| BENCHMARK 五项数字 | BLOCKED | 须真机实跑；stub 和 `--no-vlm` 不算分 |
+
+### 已知小问题（如实记录，本次不改代码）
+
+- 结构模式的占位事件 `end_ts` 是最后一帧的时间戳，不是视频总长：样例 30 秒视频是 0 到 25 秒，演示用的 56.6 秒路口素材是 0 到 50 秒。`output-contract.md` 说它"覆盖全片"，两者有出入，README 里不写"覆盖全片"。
+
 ## 目录结构
 
 ```
