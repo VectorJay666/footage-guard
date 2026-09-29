@@ -14,7 +14,7 @@
 | A-TEST-REPORT | PASS | PASS | PASS | `TEST-REPORT.md` 在库 |
 | A-evals 4pos+3neg | PASS | PASS | PASS | `evals/evals.json` |
 | A-skill-card | PASS | PASS | PASS | `skill-card.md` |
-| A-NARRATIVE 5090+spark.env | PASS | PASS | PASS | `NARRATIVE.md` |
+| A-NARRATIVE | PASS | PASS | PASS | `NARRATIVE.md` |
 | A-accept-matrix | PASS | PASS | PASS | `notes/accept-matrix-5090-vs-stub.md` |
 | A-output-contract | PASS | PASS | PASS | `references/output-contract.md` |
 | A-SKILL | PASS | PASS | PASS | `SKILL.md` |

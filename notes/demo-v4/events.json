@@ -1,0 +1,17 @@
+[
+  {
+    "idx": 1,
+    "start_ts": 0.0,
+    "end_ts": 50.0,
+    "state": {
+      "people": "未知",
+      "vehicles": "未知",
+      "top_objects": []
+    },
+    "attention": false,
+    "attention_reasons": [],
+    "n_frames": 11,
+    "sample_frame": "frame_0001.jpg",
+    "note": "VLM 未启用（结构模式），仅覆盖信息。"
+  }
+]
